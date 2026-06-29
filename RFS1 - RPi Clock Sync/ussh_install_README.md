@@ -8,11 +8,7 @@ A Raspberry Pi without a real-time clock (RTC) module loses track of time when p
 
 ## Security notice
 
-This repo contains shell scripts that run on your machine and on your Raspberry Pi. Before running anything from this repo, please:
-
-1. Read `ussh_install.sh` end-to-end to understand what the installer does.
-2. Read `ussh` (the script the installer creates) to understand what runs when you connect to the Pi.
-3. Avoid `curl ... | bash`-style installs without first downloading and reviewing the script.
+This repo contains shell scripts that run on your machine and on your Raspberry Pi.
 
 The installer writes a file to your chosen directory, optionally generates an SSH keypair, and prints instructions for connecting to the Pi. It does not modify system files or install anything that requires root on your host machine.
 
@@ -20,7 +16,7 @@ The installer writes a file to your chosen directory, optionally generates an SS
 
 **Host machine:**
 - Ubuntu Linux (20.04 and 24.04)
-- `ssh`, `ssh-keygen`, `ssh-copy-id` available (standard on Ubuntu)
+- `ssh` available (standard on Ubuntu)
 - `bash` (standard on Ubuntu)
 
 **Raspberry Pi:**
@@ -40,20 +36,11 @@ The installer handles the steps in the manual install section — creating the d
 **Recommended — download, review, run:**
 
 ```bash
-curl -O https://raw.githubusercontent.com/ingenium-lidar/RFCs/refs/heads/main/Request%20For%20Software/RFS1%20-%20RPi%20Clock%20Sync/ussh_install.sh
-less ussh_install.sh
-bash ussh_install.sh
-```
-
-For a quicker setup (after previously reviewing the script:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/ingenium-lidar/RFCs/refs/heads/main/Request%20For%20Software/RFS1%20-%20RPi%20Clock%20Sync/ussh_install.sh
+curl -fsSL https://raw.githubusercontent.com/ingenium-lidar/rpi_utils/refs/heads/main/RFS1%20-%20RPi%20Clock%20Sync/ussh_install.sh
 ```
 
 The installer will prompt you for:
 - Install location (`~/bin` or a custom directory)
-- Whether to set up an SSH key (and if so, `ssh-keygen` will prompt for the key location and passphrase)
 
 It's safe to re-run — existing files are skipped, not overwritten.
 
@@ -66,6 +53,8 @@ Once installed, connect to the Pi's hotspot, then run:
 ```bash
 ussh
 ```
+
+or run the file itself if using a custom directory
 
 You'll be prompted for your key passphrase (if set up) or the Pi's password (if not). On success, the Pi's clock is synced to your host machine and you're dropped into an interactive Pi shell.
 

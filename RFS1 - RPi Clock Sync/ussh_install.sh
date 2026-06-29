@@ -28,13 +28,12 @@ else #MS if not, we are all good and can proceed with installation of script.
     cat > "$target_dir/ussh" << 'EOF' #MS A heredoc that writes to target_dir/ussh.
 #!/bin/bash
 current_host_datetime=$(date "+%Y-%m-%d %H:%M:%S") #MS Identifies current host date and time.
-ssh -t ubuntu@10.42.0.1 "sudo date -s \"$current_host_datetime\"" #MS Performs SSH into the RPi using sudo, corrects time of RPi, and disconnects connection.
+ssh -t lidar@10.42.0.1 "sudo date -s \"$current_host_datetime\"" #MS Performs SSH into the RPi using sudo, corrects time of RPi, and disconnects connection.
 EOF
     chmod +x "$target_dir/ussh" #MS "chmod +x" makes the file executable.
 fi
 
 echo "Note this is not an ssh. Please ssh separately"
 
-else #MS They can proceed to use "ussh"!
-    echo "Connect to the Pi's hotspot, then run ussh either from $PATH or custom directory. It will prompt for the Pi's password."
-fi
+#MS They can proceed to use "ussh"!
+echo "Connect to the Pi's hotspot, then run ussh either from $PATH or custom directory. It will prompt for the Pi's password."
