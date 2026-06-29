@@ -29,10 +29,11 @@ else #MS if not, we are all good and can proceed with installation of script.
 #!/bin/bash
 current_host_datetime=$(date "+%Y-%m-%d %H:%M:%S") #MS Identifies current host date and time.
 ssh ubuntu@10.42.0.1 "sudo date -s \"$current_host_datetime\"" #MS Performs SSH into the RPi using sudo, corrects time of RPi, and disconnects connection.
-ssh ubuntu@10.42.0.1 #MS Performs final SSH into the RPi.
 EOF
     chmod +x "$target_dir/ussh" #MS "chmod +x" makes the file executable.
 fi
+
+echo "Note this is not an ssh. Please ssh separately"
 
 read -r -p "Do you want to set up an SSH key? Y/N " key_binary #MS At this point, the user will have to enter the RPi password twice. A minor inconvenience, but if they would like, they can generate and setup an SSH key to streamline the double SSH with one passphrase.
 if [[ "$key_binary" =~ ^[Yy] ]]; then #MS If the above input yields anything that starts with "y" or "Y", the setup will proceed.
