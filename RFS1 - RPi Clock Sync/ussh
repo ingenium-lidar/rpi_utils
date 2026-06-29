@@ -1,0 +1,3 @@
+#!/bin/bash
+current_host_datetime=$(date "+%Y-%m-%d %H:%M:%S") #MS Identifies current host date and time.
+ssh lidar@10.42.0.1 "sudo date -s \"$current_host_datetime\"" #MS Performs SSH into the RPi using sudo, corrects time of RPi, and disconnects connection.
