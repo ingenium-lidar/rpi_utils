@@ -36,4 +36,4 @@ fi
 echo "Note this is not an ssh. Please ssh separately"
 
 #MS They can proceed to use "ussh"!
-echo "Connect to the Pi's hotspot, then run ussh either from $PATH or custom directory. It will prompt for the Pi's password."
+echo "Connect to the Pi's hotspot, then run ussh either from PATH or custom directory. It will prompt for the Pi's password."
