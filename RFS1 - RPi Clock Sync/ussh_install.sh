@@ -35,22 +35,6 @@ fi
 
 echo "Note this is not an ssh. Please ssh separately"
 
-read -r -p "Do you want to set up an SSH key? Y/N " key_binary #MS At this point, the user will have to enter the RPi password twice. A minor inconvenience, but if they would like, they can generate and setup an SSH key to streamline the double SSH with one passphrase.
-if [[ "$key_binary" =~ ^[Yy] ]]; then #MS If the above input yields anything that starts with "y" or "Y", the setup will proceed.
-    if [[ -f "$HOME/.ssh/id_ed25519" ]]; then #MS Check if key already exists and if so, skip.
-        echo "Key already exists. Skipping step..."
-        key_setup=true
-    else #MS Otherwise we generate the key and passphrase.
-        ssh-keygen -t ed25519
-        key_setup=true
-    fi
-else #MS If the user wants to skip key generation, we skip.
-    echo "Ok, skipping key generation."
-    key_setup=false
-fi
-
-if [[ "$key_setup" == "true" ]]; then #MS If the user generated a key and passphrase, then they will need to configure the RPi afterwards. 
-    echo "Connect to the Pi's hotspot, then run ssh-copy-id lidar@10.42.0.1. Then run ussh."
-else #MS If they skip key and passphrase, then they can proceed to use "ussh"!
-    echo "Connect to the Pi's hotspot, then run ussh. It will prompt for the Pi's password."
+else #MS They can proceed to use "ussh"!
+    echo "Connect to the Pi's hotspot, then run ussh either from $PATH or custom directory. It will prompt for the Pi's password."
 fi
